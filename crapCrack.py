@@ -22,7 +22,6 @@ def  deCript(user, ctype, salt, Ppassword, rhash):
 	chash = crypt.crypt(Ppassword, insalt)
 	if (rhash == chash):
 		return Ppassword
-	else:
 		
 if __name__ == "__main__":
 	passwordfile = open("password", 'r')
