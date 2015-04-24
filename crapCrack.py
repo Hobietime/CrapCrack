@@ -24,7 +24,7 @@ def  deCript(user, ctype, salt, Ppassword, rhash):
 		return user, Ppassword
 
 	else:
-		return "fail"
+		print "fail"
 if __name__ == "__main__":
 	passwordfile = open("password", 'r')
 	userfile = open("shadow", 'r')
@@ -60,7 +60,7 @@ if __name__ == "__main__":
 	
 	pool_size = mp.cpu_count()*2
 
-	pool = mp.Pool(processes=pool_size, initializer=start_process, maxtasksperchild=2, )
+	pool = mp.Pool(processes=pool_size)
 	time.sleep(1)
 	results = pool.map(multi_run_wrapper,tasks)
 
