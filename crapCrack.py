@@ -3,7 +3,7 @@ This is a naive dictionary attack script with a bit of multiprocessing for fun
 Linux only
 '''
 
-
+import time
 import sys
 import crypt
 import multiprocessing as mp
