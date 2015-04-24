@@ -64,7 +64,7 @@ if __name__ == "__main__":
 	time.sleep(1)
 	results = pool.map(multi_run_wrapper,tasks)
 
-	output = open ("runOut", w+)
+	output = open ("runOut", 'w+')
 		for i in results:
 			if i == "fail":
 				pass
