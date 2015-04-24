@@ -63,6 +63,8 @@ if __name__ == "__main__":
 	time.sleep(1)
 	found_passwords = pool.map(multi_run_wrapper,tasks)
 
-	print(found_passwords)
+	for k in found_passwords:
+		if (k != None):
+			print k
 
 
