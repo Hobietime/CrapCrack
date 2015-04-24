@@ -21,8 +21,7 @@ def  deCript(user, ctype, salt, Ppassword, rhash):
 		insalt = '${}${}$'.format(ctype, salt)
 	chash = crypt.crypt(Ppassword, insalt)
 	if (rhash == chash):
-		return user, Ppassword
-
+		print user, Ppassword
 	else:
 		print "fail"
 if __name__ == "__main__":
@@ -62,11 +61,6 @@ if __name__ == "__main__":
 
 	pool = mp.Pool(processes=pool_size)
 	time.sleep(1)
-	results = pool.map(multi_run_wrapper,tasks)
+	pool.map(multi_run_wrapper,tasks)
 
-	output = open ("runOut", 'w+')
-	for i in results:
-		if i == "fail":
-			pass
-		else:
-			output.write(i)
+
