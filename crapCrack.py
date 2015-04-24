@@ -68,4 +68,5 @@ if __name__ == "__main__":
 	for i in results:
 		if i == "fail":
 			pass
-		f.write(i)
+		else:
+			output.write(i)
