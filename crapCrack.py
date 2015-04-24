@@ -53,7 +53,7 @@ if __name__ == "__main__":
 
 	tasks = []
 	for i in range(len(users)):
-		print(user)
+		print(i)
 		for j in range(len(passwords)):
 			tasks.append((users[i], ctypes[i], salts[i], passwords[j], rhashes[i]))
 	
