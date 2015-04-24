@@ -65,7 +65,7 @@ if __name__ == "__main__":
 	results = pool.map(multi_run_wrapper,tasks)
 
 	output = open ("runOut", 'w+')
-		for i in results:
-			if i == "fail":
-				pass
-			f.write(i)
+	for i in results:
+		if i == "fail":
+			pass
+		f.write(i)
