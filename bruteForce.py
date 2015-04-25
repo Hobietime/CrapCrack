@@ -47,4 +47,13 @@ if __name__ == "__main__":
 
 	pool = mp.Pool(processes=pool_size, initializer=start_process, maxtasksperchild=2, )
 	time.sleep(1)
-	results = pool.map(multi_run_wrapper,tasks)
+	found_passwords = pool.map(multi_run_wrapper,tasks)
+	f = open("fail",'w')
+	s = open("success", 'w')
+	for k in found_passwords:
+		if (k[0] == False):
+			f.write(" ".join(k))
+			f.write("\n")
+		else:
+			s.write(" ".join(k))
+			s.write("\n")
