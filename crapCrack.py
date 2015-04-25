@@ -8,6 +8,7 @@ import sys
 import crypt
 import multiprocessing as mp
 from base64 import b64encode
+import string
 
 def multi_run_wrapper(args):
 	return deCript(*args)
