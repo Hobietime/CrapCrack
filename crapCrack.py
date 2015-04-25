@@ -22,7 +22,7 @@ def  deCript(user, ctype, salt, Ppassword, rhash):
 	if (chash == rhash):
 		return user, ctype, salt, Ppassword, chash, rhash
 	else:
-		return fail, user, ctype, salt, Ppassword, chash, rhash
+		return "fail", user, ctype, salt, Ppassword, chash, rhash
 
 		
 if __name__ == "__main__":
@@ -67,7 +67,7 @@ if __name__ == "__main__":
 	f = open("fail",'w')
 	s = open("success", 'w')
 	for k in found_passwords:
-		if (k[0] == 'fail'):
+		if (k[0] == "fail"):
 			f.write(" ".join(k))
 			f.write("\n")
 
