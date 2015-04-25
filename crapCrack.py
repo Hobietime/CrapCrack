@@ -63,8 +63,8 @@ if __name__ == "__main__":
 			tasks.append((users[i], ctypes[i], salts[i], passwords[j], rhashes[i]))
 
 			for m in range(11):
-				tasks.append((users[i], ctypes[i], salts[i], passwords[j]+str(m), rhashes[i]))
-				#tasks.append((users[i], ctypes[i], salts[i], passwords[j]+str(20)+str(m), rhashes[i]))
+				#tasks.append((users[i], ctypes[i], salts[i], passwords[j]+str(m), rhashes[i]))
+				tasks.append((users[i], ctypes[i], salts[i], passwords[j]+str(20)+str(m), rhashes[i]))
 				#tasks.append((users[i], ctypes[i], salts[i], passwords[j]+str(19)+str(m), rhashes[i]))
 				
 	
