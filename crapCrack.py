@@ -5,14 +5,13 @@ Linux only
 
 import time
 import sys
-import crypt
+#import crypt
 import multiprocessing as mp
 
 def multi_run_wrapper(args):
-   return deCript(*args)
+	return deCript(*args)
 
-def start_process():
-    print 'Starting', mp.current_process().name
+
 
 def  deCript(user, ctype, salt, Ppassword, rhash):
 	if (ctype == '0'):
@@ -22,6 +21,8 @@ def  deCript(user, ctype, salt, Ppassword, rhash):
 	chash = crypt.crypt(Ppassword, insalt)
 	if (rhash == chash):
 		return Ppassword
+	else:
+		return None
 		
 if __name__ == "__main__":
 	passwordfile = open("password", 'r')
@@ -57,14 +58,15 @@ if __name__ == "__main__":
 		for j in range(len(passwords)):
 			tasks.append((users[i], ctypes[i], salts[i], passwords[j], rhashes[i]))
 	
-	pool_size = mp.cpu_count()*2
+	pool_size = mp.cpu_count()
 
 	pool = mp.Pool(processes=pool_size)
 	time.sleep(1)
 	found_passwords = pool.map(multi_run_wrapper,tasks)
-
+	f = open("output",'w')
 	for k in found_passwords:
 		if (k != None):
-			print k
+			f.write(" ".join(k))
+			f.write("\n")
 
 
