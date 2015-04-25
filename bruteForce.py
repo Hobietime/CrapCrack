@@ -1,6 +1,6 @@
 import multiprocessing as mp
 import time
-
+from itertools import permutations
 def multi_run_wrapper(args):
    return add(*args)
 
