@@ -22,7 +22,7 @@ def  deCript(user, ctype, salt, Ppassword, rhash):
 	if (chash == rhash):
 		return user, ctype, salt, Ppassword, chash, rhash
 	else:
-		return False, ctype, salt, Ppassword, chash, rhash
+		return None
 		
 if __name__ == "__main__":
 	passwordfile = open("password", 'r')
@@ -56,7 +56,7 @@ if __name__ == "__main__":
 	for i in range(len(users)):
 		print(i)
 		for j in range(len(passwords)):
-			tasks.append((users[i], ctypes[i], salts[i], passwords[j] + str(m), rhashes[i]))
+			tasks.append((users[i], ctypes[i], salts[i], passwords[j], rhashes[i]))
 	
 	pool_size = mp.cpu_count()
 
@@ -69,8 +69,5 @@ if __name__ == "__main__":
 		if (k[0] == False):
 			f.write(" ".join(k))
 			f.write("\n")
-		else:
-			s.write(" ".join(k))
-			s.write("\n")
 
 
