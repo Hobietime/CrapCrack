@@ -40,7 +40,7 @@ if __name__ == "__main__":
 
 	tasks = []
 	for i in range(len(users)):
-		for j in [''.join(p) for p in permutations('abcdefghijklmnopqrstuvwxyz')], 6):
+		for j in [''.join(p) for p in permutations('abcdefghijklmnopqrstuvwxyz', 6)]:
 			tasks.append((users[i], ctypes[i], salts[i], j, rhashes[i]))
 	
 	pool_size = mp.cpu_count()*2
