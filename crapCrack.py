@@ -22,7 +22,8 @@ def  deCript(user, ctype, salt, Ppassword, rhash):
 	if (chash == rhash):
 		return user, ctype, salt, Ppassword, chash, rhash
 	else:
-		return None
+		return False, user, ctype, salt, Ppassword, chash, rhash
+
 		
 if __name__ == "__main__":
 	passwordfile = open("password", 'r')
