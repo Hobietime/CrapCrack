@@ -20,6 +20,7 @@ def  deCript(user, ctype, salt, Ppassword, rhash):
 		insalt = '${}${}$'.format(ctype, salt)
 	chash = crypt.crypt(Ppassword, insalt)
 	if (chash == rhash):
+		print "success!"
 		return user, ctype, salt, Ppassword, chash, rhash
 	else:
 		return "fail", user, ctype, salt, Ppassword, chash, rhash
@@ -57,8 +58,8 @@ if __name__ == "__main__":
 	for i in range(len(users)):
 		print(i)
 		for j in range(len(passwords)):
-			for m in range(11):
-				tasks.append((users[i], ctypes[i], salts[i], passwords[j]+str(m), rhashes[i]))
+			for m in range(20):
+				tasks.append((users[i], ctypes[i], salts[i], passwords[j]+20+str(m), rhashes[i]))
 	
 	pool_size = mp.cpu_count()
 
