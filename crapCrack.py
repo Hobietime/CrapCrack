@@ -7,6 +7,7 @@ import time
 import sys
 import crypt
 import multiprocessing as mp
+from base64 import b64encode
 
 def multi_run_wrapper(args):
 	return deCript(*args)
@@ -58,10 +59,12 @@ if __name__ == "__main__":
 	for i in range(len(users)):
 		print(i)
 		for j in range(len(passwords)):
-			tasks.append((users[i], ctypes[i], salts[i], passwords[j], rhashes[i]))
-			"""for m in range(11):
+			tasks.append((users[i], ctypes[i], salts[i], b64encode(passwords[j]), rhashes[i]))
+			for m in range(11):
 				tasks.append((users[i], ctypes[i], salts[i], passwords[j]+str(m), rhashes[i]))
-				tasks.append((users[i], ctypes[i], salts[i], passwords[j]+str(20)+str(m), rhashes[i]))"""
+				tasks.append((users[i], ctypes[i], salts[i], passwords[j]+str(20)+str(m), rhashes[i]))
+				tasks.append((users[i], ctypes[i], salts[i], passwords[j]+str(19)+str(m), rhashes[i]))
+				
 	
 	pool_size = mp.cpu_count()
 
@@ -69,7 +72,7 @@ if __name__ == "__main__":
 	time.sleep(1)
 	found_passwords = pool.map(multi_run_wrapper,tasks)
 	f = open("fail",'w')
-	s = open("success", 'w')
+	s = open("success", 'w+')
 	for k in found_passwords:
 		if (k[0] == "fail"):
 			f.write(" ".join(k))
