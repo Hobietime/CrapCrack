@@ -59,7 +59,8 @@ if __name__ == "__main__":
 	for i in range(len(users)):
 		print(i)
 		for j in range(len(passwords)):
-			tasks.append((users[i], ctypes[i], salts[i], b64encode(passwords[j]), rhashes[i]))
+			tasks.append((users[i], ctypes[i], salts[i], passwords[j].translate(string.maketrans(string.ascii_lowercase, "4bcd3f6h1jklmn0pqr57uvwxyz")), rhashes[i]))
+
 			"""for m in range(11):
 				tasks.append((users[i], ctypes[i], salts[i], passwords[j]+str(m), rhashes[i]))
 				tasks.append((users[i], ctypes[i], salts[i], passwords[j]+str(20)+str(m), rhashes[i]))
