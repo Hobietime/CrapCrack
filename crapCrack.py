@@ -66,7 +66,7 @@ if __name__ == "__main__":
 	f = open("output",'w')
 	for k in found_passwords:
 		if (k != None):
-			f.write(" ".join(k))
+			f.write(k)
 			f.write("\n")
 
 
