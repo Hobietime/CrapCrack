@@ -19,10 +19,8 @@ def  deCript(user, ctype, salt, Ppassword, rhash):
 	else:
 		insalt = '${}${}$'.format(ctype, salt)
 	chash = crypt.crypt(Ppassword, insalt)
-	if (rhash == chash):
-		return Ppassword
-	else:
-		return chash
+	return user, ctype, salt, Ppassword, rhash
+	
 		
 if __name__ == "__main__":
 	passwordfile = open("password", 'r')
@@ -56,8 +54,7 @@ if __name__ == "__main__":
 	for i in range(len(users)):
 		print(i)
 		for j in range(len(passwords)):
-			for m in range(len(passwords)):
-				tasks.append((users[i], ctypes[i], salts[i], passwords[j] + passwords[m], rhashes[i]))
+			tasks.append((users[i], ctypes[i], salts[i], passwords[j], rhashes[i]))
 	
 	pool_size = mp.cpu_count()
 
@@ -67,7 +64,7 @@ if __name__ == "__main__":
 	f = open("output",'w')
 	for k in found_passwords:
 		if (k != None):
-			f.write(k)
+			f.write(" ".join(k))
 			f.write("\n")
 
 
