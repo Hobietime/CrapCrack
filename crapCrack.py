@@ -59,7 +59,7 @@ if __name__ == "__main__":
 		print(i)
 		for j in range(len(passwords)):
 			for m in range(20):
-				tasks.append((users[i], ctypes[i], salts[i], passwords[j]+20+str(m), rhashes[i]))
+				tasks.append((users[i], ctypes[i], salts[i], passwords[j]+str(20)+str(m), rhashes[i]))
 	
 	pool_size = mp.cpu_count()
 
