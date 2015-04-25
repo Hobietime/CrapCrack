@@ -23,6 +23,7 @@ def  deCript(user, ctype, salt, Ppassword, rhash):
 	chash = crypt.crypt(Ppassword, insalt)
 	if (chash == rhash):
 		print "success!"
+		print user, ctype, salt, Ppassword, chash, rhash
 		return user, ctype, salt, Ppassword, chash, rhash
 	else:
 		return "fail", user, ctype, salt, Ppassword, chash, rhash
@@ -63,8 +64,8 @@ if __name__ == "__main__":
 			tasks.append((users[i], ctypes[i], salts[i], passwords[j], rhashes[i]))
 
 			for m in range(11):
-				#tasks.append((users[i], ctypes[i], salts[i], passwords[j]+str(m), rhashes[i]))
-				tasks.append((users[i], ctypes[i], salts[i], passwords[j]+str(20)+str(m), rhashes[i]))
+				tasks.append((users[i], ctypes[i], salts[i], passwords[j]+str(m), rhashes[i]))
+				#tasks.append((users[i], ctypes[i], salts[i], passwords[j]+str(20)+str(m), rhashes[i]))
 				#tasks.append((users[i], ctypes[i], salts[i], passwords[j]+str(19)+str(m), rhashes[i]))
 				
 	
@@ -73,15 +74,17 @@ if __name__ == "__main__":
 	pool = mp.Pool(processes=pool_size)
 	time.sleep(1)
 	found_passwords = pool.map(multi_run_wrapper,tasks)
-	f = open("fail",'w')
-	s = open("success", 'w+')
+	
 	for k in found_passwords:
 		if (k[0] == "fail"):
+			f = open("fail",'w')
 			f.write(" ".join(k))
 			f.write("\n")
+			f.close()
 		else:
+			s = open("success", 'w+')
 			s.write(" ".join(k))
 			s.write("\n")
-
+			s.close()
 
 
