@@ -30,7 +30,7 @@ def  deCript(user, ctype, salt, Ppassword, rhash):
 
 		
 if __name__ == "__main__":
-	passwordfile = open("password", 'r')
+	passwordfile = open("leetfile", 'r')
 	userfile = open("shadow", 'r')
 	passwords = []
 	for line in passwordfile:
@@ -61,12 +61,8 @@ if __name__ == "__main__":
 	for i in range(len(users)):
 		print(i)
 		for j in range(len(passwords)):
-			#tasks.append((users[i], ctypes[i], salts[i], passwords[j], rhashes[i]))
+			tasks.append((users[i], ctypes[i], salts[i], passwords[j], rhashes[i]))
 
-			for m in range(11):
-				#tasks.append((users[i], ctypes[i], salts[i], passwords[j]+str(m), rhashes[i]))
-				tasks.append((users[i], ctypes[i], salts[i], passwords[j]+str(20)+str(m), rhashes[i]))
-				#tasks.append((users[i], ctypes[i], salts[i], passwords[j]+str(19)+str(m), rhashes[i]))
 				
 	
 	pool_size = mp.cpu_count()
