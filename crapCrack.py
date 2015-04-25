@@ -5,7 +5,7 @@ Linux only
 
 import time
 import sys
-#import crypt
+import crypt
 import multiprocessing as mp
 
 def multi_run_wrapper(args):
