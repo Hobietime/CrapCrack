@@ -75,12 +75,12 @@ if __name__ == "__main__":
 	
 	for k in found_passwords:
 		if (k[0] == "fail"):
-			f = open("fail",'w')
+			f = open("fail",'a+')
 			f.write(" ".join(k))
 			f.write("\n")
 			f.close()
 		else:
-			s = open("success", 'w+')
+			s = open("success", 'a+')
 			s.write(" ".join(k))
 			s.write("\n")
 			s.close()

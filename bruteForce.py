@@ -48,8 +48,8 @@ if __name__ == "__main__":
 	pool = mp.Pool(processes=pool_size, initializer=start_process, maxtasksperchild=2, )
 	time.sleep(1)
 	found_passwords = pool.map(multi_run_wrapper,tasks)
-	f = open("fail",'w')
-	s = open("success", 'w')
+	f = open("fail",'a+')
+	s = open("success", 'a+')
 	for k in found_passwords:
 		if (k[0] == False):
 			f.write(" ".join(k))
