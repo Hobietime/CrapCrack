@@ -13,8 +13,6 @@ import string
 def multi_run_wrapper(args):
 	return deCript(*args)
 
-
-
 def  deCript(user, ctype, salt, Ppassword, rhash):
 	if (ctype == '0'):
 		insalt = salt
@@ -31,7 +29,7 @@ def  deCript(user, ctype, salt, Ppassword, rhash):
 		
 if __name__ == "__main__":
 	passwordfile = open("password", 'r')
-	userfile = open("shadowDES", 'r')
+	userfile = open("DESshadowDES", 'r')
 	passwords = []
 	for line in passwordfile:
 		if (line[0] == '#' or line[0] == '\n'):
@@ -61,7 +59,9 @@ if __name__ == "__main__":
 	for i in range(len(users)):
 		print(i)
 		for j in range(len(passwords)):
-			tasks.append((users[i], ctypes[i], salts[i], passwords[j], rhashes[i]))
+			passwords[j] = passwords[j].title()
+			for l in range (10):
+				tasks.append((users[i], ctypes[i], salts[i], passwords[j]+str(l), rhashes[i]))
 
 				
 	

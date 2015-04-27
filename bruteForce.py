@@ -5,6 +5,7 @@ import multiprocessing as mp
 from base64 import b64encode
 import string
 from itertools import permutations
+
 def multi_run_wrapper(args):
 	return deCript(*args)
 
@@ -51,7 +52,8 @@ if __name__ == "__main__":
 
 	tasks = []
 	for i in range(len(users)):
-		for j in [''.join(p) for p in permutations('1234567890', 6)]:
+		for j in [''.join(p) for p in permutations('0123456789', 8)]:
+			print j
 			tasks.append((users[i], ctypes[i], salts[i], j, rhashes[i]))
 	
 
@@ -63,7 +65,7 @@ if __name__ == "__main__":
 
 	for k in found_passwords:
 		if (k[0] == "fail"):
-			f = open("fail",'w')
+			f = open("fail",'w+')
 			f.write(" ".join(k))
 			f.write("\n")
 			f.close()
