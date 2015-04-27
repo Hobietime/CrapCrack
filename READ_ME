@@ -13,11 +13,13 @@ Next, I attempted appending both 19XX and 20XX to the end of each password in th
 
 Neither of these worked, however.  I then started applying applying different forms of encoding to the passwords.  These included Base64, various forms of leetspeak, and substituting 0 for o, and @ for a.  
 
-After, I knew from the assignment that MD5 was an extremely fast algorithm.  So I tried a brute force method with for a pin (0-9) as my possibilities and anywhere fro 6 to 8 digits in length.  This yelled no results.  I wanted to attempt one with chars instead of digits but the space was much too large even with 6 places.
+After, I knew from the assignment that MD5 was an extremely fast algorithm.  So I tried a brute force method with for a pin (0-9) as my possibilities and anywhere fro 6 to 8 digits in length.  This yielded no results.  I wanted to attempt one with chars instead of digits but the space was much too large even with 6 places using my method.  I tired removing uncommon letters such as wxyz and am now attempting that as I am writing this.
 
 I also attempted capitalizing the first letter of each password, as that was also common.  
 
 Nothing else seemed to net any results.  
+
+However, it seems I accidentally set python to overwrite the success file once a password was found instead of appending.  I may have found it, but my stupidity was holding me back. 
 
 If I had a more realistic scenario, I would have instead set up Hashcat to run through the usual rule based attacks and used rock you for my starting dictionary in a hybrid attack.  I also would probably have thousands of passwords all using the same hashing algorithm.  This would make life much easier as one computed hash could then be checked against thousands of known hashes instead of one.  This would have greatly increased my chances of finding passwords.
 
