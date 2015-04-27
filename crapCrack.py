@@ -16,6 +16,7 @@ def multi_run_wrapper(args):
 
 
 def  deCript(user, ctype, salt, Ppassword, rhash):
+	print Ppassword
 	if (ctype == '0'):
 		insalt = salt
 	else:
@@ -30,7 +31,7 @@ def  deCript(user, ctype, salt, Ppassword, rhash):
 
 		
 if __name__ == "__main__":
-	passwordfile = open("password", 'r')
+	passwordfile = open("capPassword", 'r')
 	userfile = open("shadow", 'r')
 	passwords = []
 	for line in passwordfile:
@@ -61,11 +62,10 @@ if __name__ == "__main__":
 	for i in range(len(users)):
 		print(i)
 		for j in range(len(passwords)):
-			passwords[j] = passwords[j].title()
 			tasks.append((users[i], ctypes[i], salts[i], passwords[j], rhashes[i]))
 				
 	
-	pool_size = mp.cpu_count()
+	pool_size = mp.cpu_count()*2
 
 	pool = mp.Pool(processes=pool_size)
 	time.sleep(1)
