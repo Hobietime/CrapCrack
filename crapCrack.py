@@ -31,7 +31,7 @@ def  deCript(user, ctype, salt, Ppassword, rhash):
 
 		
 if __name__ == "__main__":
-	passwordfile = open("capPassword", 'r')
+	passwordfile = open("NumPassword", 'r')
 	userfile = open("shadow", 'r')
 	passwords = []
 	for line in passwordfile:
