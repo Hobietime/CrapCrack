@@ -1,0 +1,24 @@
+CAIO MOTTA
+
+6310676
+
+CrapCrack is a terribly unoptimized way to achieve offline password cracking.
+
+The language used is python.
+
+I was able to use multiprocessing, which did speed up the process somewhat.
+
+My methodology for finding passwords began with a simple dictionary attack. This recovered the first password, "nightmarish" for gorbels.
+Next, I attempted appending both 19XX and 20XX to the end of each password in the dictionary where XX is 80-99 and 00 to 15, respectively.  This was designed to catch any passwords that simply had a year appended to the end.  after, I went for the numbers 0 through 150 appended to the end as well.
+
+Neither of these worked, however.  I then started applying applying different forms of encoding to the passwords.  These included Base64, various forms of leetspeak, and substituting 0 for o, and @ for a.  
+
+After, I knew from the assignment that MD5 was an extremely fast algorithm.  So I tried a brute force method with for a pin (0-9) as my possibilities and anywhere fro 6 to 8 digits in length.  This yelled no results.  I wanted to attempt one with chars instead of digits but the space was much too large even with 6 places.
+
+I also attempted capitalizing the first letter of each password, as that was also common.  
+
+Nothing else seemed to net any results.  
+
+If I had a more realistic scenario, I would have instead set up Hashcat to run through the usual rule based attacks and used rock you for my starting dictionary in a hybrid attack.  I also would probably have thousands of passwords all using the same hashing algorithm.  This would make life much easier as one computed hash could then be checked against thousands of known hashes instead of one.  This would have greatly increased my chances of finding passwords.
+
+I will probably continue my search as I have time, but feel satisfied with finding one password.
