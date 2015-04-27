@@ -12,7 +12,7 @@ def start_process():
 
 if __name__ == "__main__":
 	passwordfile = open("password", 'r')
-	userfile = open("shadow", 'r')
+	userfile = open("DESshadowDES", 'r')
 	passwords = []
 	for line in passwordfile:
 		if (line[0] == '#' or line[0] == '\n'):
@@ -48,12 +48,14 @@ if __name__ == "__main__":
 	pool = mp.Pool(processes=pool_size, initializer=start_process, maxtasksperchild=2, )
 	time.sleep(1)
 	found_passwords = pool.map(multi_run_wrapper,tasks)
-	f = open("fail",'w')
-	s = open("success", 'w')
 	for k in found_passwords:
-		if (k[0] == False):
+		if (k[0] == "fail"):
+			f = open("fail",'w')
 			f.write(" ".join(k))
 			f.write("\n")
+			f.close()
 		else:
+			s = open("success", 'w+')
 			s.write(" ".join(k))
 			s.write("\n")
+			s.close()

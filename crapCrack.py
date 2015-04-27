@@ -30,8 +30,8 @@ def  deCript(user, ctype, salt, Ppassword, rhash):
 
 		
 if __name__ == "__main__":
-	passwordfile = open("leetfile", 'r')
-	userfile = open("shadow", 'r')
+	passwordfile = open("password", 'r')
+	userfile = open("shadowDES", 'r')
 	passwords = []
 	for line in passwordfile:
 		if (line[0] == '#' or line[0] == '\n'):
