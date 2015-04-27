@@ -1,5 +1,9 @@
-import multiprocessing as mp
 import time
+import sys
+import crypt
+import multiprocessing as mp
+from base64 import b64encode
+import string
 from itertools import permutations
 def multi_run_wrapper(args):
 	return deCript(*args)
